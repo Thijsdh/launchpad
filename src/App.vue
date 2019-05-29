@@ -64,6 +64,10 @@ export default Vue.extend({
 </script>
 
 <style>
+* {
+	box-sizing: border-box;
+}
+
 html,
 body {
 	width: 100%;
