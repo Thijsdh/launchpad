@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.34966bc5a84afdfc25916310b9c38494.js"
+  "/launchpad/precache-manifest.49bed88bbc405a945e8451855f7ecf8f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "launchpad"});
