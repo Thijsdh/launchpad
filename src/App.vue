@@ -5,14 +5,14 @@
 				v-for="index in [7, 8, 9, 4, 5, 6, 1, 2, 3]"
 				:key="index"
 				:board="activeBoard"
-				:holdMode="holdModeInput === 'yes'"
+				:holdMode="holdMode"
 				:index="index"
 				ref="button"
 			/>
 		</main>
-		<section class="settings">
+		<section class="settings container">
 			<label for="hold-mode-input">Hold mode</label>
-			<input type="checkbox" v-model="holdModeInput" true-value="yes" false-value="no" id="hold-mode-input">
+			<checkbox v-model="holdMode" id="hold-mode-input"></checkbox>
 		</section>
 		<footer>
 			<selector :activeBoard="activeBoard" @toggleBoard="activeBoard = $event" />
@@ -22,6 +22,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Checkbox from '@/components/Checkbox.vue';
 import LaunchpadButton from '@/components/LaunchpadButton.vue';
 import Selector from '@/components/Selector.vue';
 
@@ -30,10 +31,11 @@ export default Vue.extend({
 	data() {
 		return {
 			activeBoard: 1,
-			holdModeInput: 'no'
+			holdMode: false
 		};
 	},
 	components: {
+		Checkbox,
 		LaunchpadButton,
 		Selector
 	},
@@ -92,14 +94,16 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
-
-	@media (prefers-color-scheme: dark) {
-		background: #181818;
-	}
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #app {
 	color: #393939;
 	height: 100%;
+
+	@media (prefers-color-scheme: dark) {
+		background: #181818;
+		color: #ffffff;
+	}
 }
 
 .container {
@@ -114,5 +118,14 @@ body {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: repeat(3, 1fr);
+}
+
+.settings {
+	margin-top: 20px;
+
+	label {
+		display: block;
+		padding-bottom: 5px;
+	}
 }
 </style>
