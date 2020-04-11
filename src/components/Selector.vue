@@ -14,8 +14,8 @@
 import Vue from 'vue';
 export default Vue.extend({
 	props: {
-		activeBoard: Number,
-	},
+		activeBoard: Number
+	}
 });
 </script>
 
@@ -41,6 +41,11 @@ button {
 	width: 30px;
 	height: 30px;
 	background: #f3f3f3;
+
+	@media (prefers-color-scheme: dark) {
+		background: #383838;
+		color: #ffffff;
+	}
 
 	&.active {
 		background: #693eff;

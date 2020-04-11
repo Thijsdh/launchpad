@@ -63,9 +63,16 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss">
 * {
 	box-sizing: border-box;
+
+	&:focus {
+		outline: 0;
+	}
+	&::-moz-focus-inner {
+		border: 0;
+	}
 }
 
 html,
@@ -73,6 +80,10 @@ body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
+
+	@media (prefers-color-scheme: dark) {
+		background: #181818;
+	}
 }
 #app {
 	color: #393939;

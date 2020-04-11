@@ -12,12 +12,12 @@ export default Vue.extend({
 	data() {
 		return {
 			file: '',
-			playing: false,
+			playing: false
 		};
 	},
 	props: {
 		board: Number,
-		index: Number,
+		index: Number
 	},
 	methods: {
 		clear(e: MouseEvent) {
@@ -29,7 +29,7 @@ export default Vue.extend({
 		},
 		fileChange(fileChangeEvent: Event) {
 			const reader = new FileReader();
-			reader.addEventListener('load', (readerLoadEvent) => {
+			reader.addEventListener('load', readerLoadEvent => {
 				const e = readerLoadEvent as ProgressEvent;
 				const target = e.target as any;
 				this.file = target.result;
@@ -82,22 +82,22 @@ export default Vue.extend({
 			const audioElement = this.$refs.audio as HTMLAudioElement;
 			audioElement.pause();
 			audioElement.currentTime = 0;
-		},
+		}
 	},
 	computed: {
 		storageIndex() {
 			return `button-${this.board}-${this.index}`;
-		},
+		}
 	},
 	watch: {
 		// Reload when the board changes.
 		board() {
 			this.load();
-		},
+		}
 	},
 	mounted() {
 		this.load();
-	},
+	}
 });
 </script>
 
@@ -111,8 +111,16 @@ button {
 	border-radius: 5px;
 	font-size: 2em;
 
+	@media (prefers-color-scheme: dark) {
+		background: #383838;
+		color: #ffffff;
+	}
+
 	&.ready {
 		background: #f3f3f3;
+		@media (prefers-color-scheme: dark) {
+			background: #454545;
+		}
 	}
 	&.playing {
 		background: #693eff;
