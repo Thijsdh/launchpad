@@ -1,11 +1,11 @@
 <template>
 	<div class="button-container">
-		<button :class="{ ready: file.length, playing }" ref="button" @mousedown.left="play" @mouseup.left="stop" @contextmenu="clear">
+		<button :class="{ ready: file.length, playing }" ref="button" @mousedown.left="keyDown()" @mouseup.left="keyUp()" @contextmenu="clear">
 			<span class="index" v-text="index"></span>
 			<span class="title" v-if="title && title.length" v-text="title"></span>
 		</button>
 		<input type="file" ref="fileInput" @change="fileChange">
-		<audio v-if="file.length" :src="file" ref="audio"></audio>
+		<audio v-if="file.length" :src="file" ref="audio" @ended="stop"></audio>
 	</div>
 </template>
 
@@ -21,6 +21,7 @@ export default Vue.extend({
 	},
 	props: {
 		board: Number,
+		holdMode: Boolean,
 		index: Number
 	},
 	methods: {
@@ -49,15 +50,14 @@ export default Vue.extend({
 			if (!files.length) return;
 			reader.readAsDataURL(file);
 		},
-		keyDown(key: number) {
-			if (key === this.index) {
-				this.play();
-			}
+		keyDown(key?: number) {
+			if (key && key !== this.index) return;
+			if (!this.holdMode && this.playing) return this.stop();
+			this.play();
 		},
-		keyUp(key: number) {
-			if (key === this.index) {
-				this.stop();
-			}
+		keyUp(key?: number) {
+			if (key && key !== this.index) return;
+			if (this.holdMode) this.stop();
 		},
 		load() {
 			this.file = '';

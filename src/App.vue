@@ -1,8 +1,19 @@
 <template>
 	<div id="app">
 		<main class="launchpad container">
-			<launchpad-button v-for="index in [7, 8, 9, 4, 5, 6, 1, 2, 3]" :key="index" :board="activeBoard" :index="index" ref="button" />
+			<launchpad-button
+				v-for="index in [7, 8, 9, 4, 5, 6, 1, 2, 3]"
+				:key="index"
+				:board="activeBoard"
+				:holdMode="holdModeInput === 'yes'"
+				:index="index"
+				ref="button"
+			/>
 		</main>
+		<section class="settings">
+			<label for="hold-mode-input">Hold mode</label>
+			<input type="checkbox" v-model="holdModeInput" true-value="yes" false-value="no" id="hold-mode-input">
+		</section>
 		<footer>
 			<selector :activeBoard="activeBoard" @toggleBoard="activeBoard = $event" />
 		</footer>
@@ -18,7 +29,8 @@ export default Vue.extend({
 	name: 'Launchpad',
 	data() {
 		return {
-			activeBoard: 1
+			activeBoard: 1,
+			holdModeInput: 'no'
 		};
 	},
 	components: {
