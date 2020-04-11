@@ -92,7 +92,7 @@ body {
 
 .container {
 	width: 100%;
-	max-width: 480px;
+	max-width: 580px;
 	margin: 0 auto;
 	padding: 0 10px;
 }
